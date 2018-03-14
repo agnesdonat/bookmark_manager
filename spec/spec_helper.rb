@@ -1,10 +1,14 @@
 ENV['ENVIRONMENT'] = 'test'
 
+require 'rake'
+
+Rake.application.load_rakefile
+
 RSpec.configure do |config|
   config.before(:each) do
-    require_relative './test_database_setup'
+    Rake::Task['test_database_setup'].execute
   end
-end 
+end
 
 require './app.rb'
 require 'capybara'
