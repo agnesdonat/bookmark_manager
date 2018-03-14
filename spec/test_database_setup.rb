@@ -1,10 +1,10 @@
 require 'pg'
 p "Setting up test database..."
 
-connection = PG.connect(dbname: 'bookmark_manager_test')
+DatabaseConnection.setup('bookmark_manager_test')
 
-connection.exec("TRUNCATE links;")
+DatabaseConnection.query("TRUNCATE links;")
 
-connection.exec("INSERT INTO links (url) VALUES('http://www.makersacademy.com');")
-connection.exec("INSERT INTO links (url) VALUES('http://www.zoobudapest.com/en');")
-connection.exec("INSERT INTO links (url) VALUES('http://www.shakespearesglobe.com/');")
+DatabaseConnection.query("INSERT INTO links (url) VALUES('http://www.makersacademy.com');")
+DatabaseConnection.query("INSERT INTO links (url) VALUES('http://www.zoobudapest.com/en');")
+DatabaseConnection.query("INSERT INTO links (url) VALUES('http://www.shakespearesglobe.com/');")
