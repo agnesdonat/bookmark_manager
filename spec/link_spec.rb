@@ -10,4 +10,11 @@ describe Link do
       expect(links).to include("http://www.shakespearesglobe.com/")
     end
   end
+
+  describe '#add' do
+    it 'adds a new link to bmm' do
+      Link.add('https://deveiate.org/code/pg/')
+      expect(Link.all).to include("https://deveiate.org/code/pg/")
+    end
+  end
 end

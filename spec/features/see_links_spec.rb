@@ -7,4 +7,11 @@ feature 'Viewing links' do
     expect(page).to have_content "http://www.zoobudapest.com/en"
     expect(page).to have_content "http://www.shakespearesglobe.com/"
   end
+
+  scenario 'Adding links' do
+    visit ('/')
+    fill_in :url, with: 'https://deveiate.org/code/pg/'
+    click_on('Submit')
+    expect(page).to have_content('https://deveiate.org/code/pg/')
+  end
 end
