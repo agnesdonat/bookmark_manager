@@ -1,8 +1,12 @@
 require 'sinatra/base'
 require './lib/link'
 require './lib/db_connection_setup'
+require 'sinatra/flash'
+
 
 class BookmarkManager < Sinatra::Base
+  enable :sessions
+  register Sinatra::Flash
 
   get '/' do
     @links = Link.all
@@ -10,7 +14,11 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/new_link' do
-    @name = Link.add(params[:url])
+    if Link.good_link?(params[:url])
+      Link.add(params[:url])      
+    else
+      flash[:notice] = "Please add a valid link"
+    end
     redirect('/')
   end
 
